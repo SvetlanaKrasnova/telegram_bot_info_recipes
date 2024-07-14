@@ -1,2 +1,7 @@
-# telegram_bot_info_recipes
-Telegram-бот «Информация о рецептах»
+# Telegram-бот «Информация о рецептах»
+
+## Стек технологий
+- python 3.8
+- asyncio
+- aiohttp
+- aiogram 3.10
