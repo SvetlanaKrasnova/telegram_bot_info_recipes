@@ -1,7 +1,9 @@
+from typing import List
+from interfaces.models import Responce, Meals
+
 async def get_categories(session) -> list:
     """
-    Функция по получению списка категорий
-    Затем делает запрос и записывает json-данные из ответа в переменную data.
+    Функция по получению списка категорий по которым можно получить рецепты.
     :param session: объект сессии
     :return: список категорий
     """
@@ -10,20 +12,21 @@ async def get_categories(session) -> list:
         return [x['strCategory'] for x in data.get('meals', '') if x.get('strCategory')]
 
 
-async def get_meals(session, category: str):
+async def get_meals_for_category(session, category: str) -> List[Meals]:
     """
     Функция собирает список всех рецептов данной категории
-    :param session:
+    :param session: объект сессии
+    :param category: наименование категории, по которой нужно получить рецепты
     :return:
     """
     async with session.get(url=f'https://www.themealdb.com/api/json/v1/1/search.php?s={category}') as resp:
         data = await resp.json()
-        return data.get('meals', [])
+        return Responce(**data).meals
 
 
-async def get_recipes(session, id_meal):
+async def get_recipes(session, id_meal) -> Meals:
     """
-    Функция по получению рецепта
+    Функция получает рецепт блюда по его id
     :param session:
     :param id_meal: id блюда
     :return:
@@ -32,4 +35,4 @@ async def get_recipes(session, id_meal):
         data = await resp.json()
         if data.get('meals'):
             if data.get('meals').__len__() == 1:
-                return data['meals'][0]
+                return Responce(**data).meals[0]
