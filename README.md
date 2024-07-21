@@ -48,11 +48,12 @@ telegram_bot_info_recipes/
 ├── interfaces/
 │   ├── api_themealdb.py # описание взаимодействия с API themealdb
 │   └── models.py # Модели ответов API themealdb
+├── keyboards/
+│   └── keyboard_start.py # Кнопки для команды /start
 ├── README.md
 ├── recipes_handler.py # функции, описывающие диалог с ботом
 ├── requirements.txt
 ├── utils/
-│   ├── button_start.py # Кнопки для команды /start
 │   └── suffix_text_meals.py # дополнительный функционал для форматирования текста
 └── bot_main.py
 ~~~
