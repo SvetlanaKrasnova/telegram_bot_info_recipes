@@ -3,11 +3,12 @@ from typing import List, Optional
 from typing import Any
 
 
-class Meals(BaseModel):
-    id_meal: str = Field(alias='idMeal')
-    str_meal: str = Field(alias='strMeal')
-    str_instructions: str = Field(alias='strInstructions')
+class Meal(BaseModel):
+    id_meal: str = Field(default='', alias='idMeal')
+    str_meal: str = Field(default='', alias='strMeal')
+    str_instructions: str = Field(default='', alias='strInstructions')
     ingredients: list = Field(default=[])
+    status: str = Field(default='Success', alias='status')
 
     @model_validator(mode='before')
     @classmethod
@@ -22,5 +23,5 @@ class Meals(BaseModel):
         return data
 
 
-class Responce(BaseModel):
-    meals: Optional[List[Meals]] = Field(default=None, alias='meals')
+class ResponceMeals(BaseModel):
+    meals: Optional[List[Meal]] = Field(default=None, alias='meals')

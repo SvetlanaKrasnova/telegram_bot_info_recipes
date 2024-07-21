@@ -1,6 +1,6 @@
-import asyncio
-import logging
 import sys
+import logging
+import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
@@ -12,7 +12,7 @@ from aiogram.utils.markdown import hbold
 from aiogram import types
 from recipes_handler import router
 from config.token_data import TOKEN
-from button_start import keyboard
+from keyboards.keyboard_start import keyboard
 
 dp = Dispatcher()
 dp.include_router(router)
